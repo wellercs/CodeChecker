@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.results {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 1px solid #AAAAAA;
+}
+
+.results th,
+.results td {
+	line-height: 20px;
+	text-align: left;
+	vertical-align: top;
+	border-top: 1px solid #BBBBBB;
+}
+
+.results td {
+	padding: 4px 8px;
+}
+
+.results th {
+	padding: 6px 8px;
+	background: #BBBBBB url('') repeat-x;
+	box-shadow: 0 1px 0 #F5F5F5 inset;
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, 1.0);
+	/*text-transform: uppercase;*/
+	letter-spacing: 1px;
+	border-bottom: 1px solid #777;
+}
+	.sortable th a { color: #333; }
+
+.results thead th {
+	vertical-align: bottom;
+}
+
+.tableSortArrow { /* these are added with JavaScript */
+	vertical-align: middle;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.results caption + thead tr:first-child th,
+.results caption + thead tr:first-child td,
+.results colgroup + thead tr:first-child th,
+.results colgroup + thead tr:first-child td,
+.results thead:first-child tr:first-child th,
+.results thead:first-child tr:first-child td {
+	border-top: 0;
+}
+
+.results tbody + tbody {
+	border-top: 2px solid #BBBBBB;
+}
+
+.results td, .results th { vertical-align: middle; }
+
+
+
+/*--- HOVER ---*/
+.hover tbody tr:hover td,
+.hover tbody tr:hover th {
+  background-color: #E5E5E5; /* match .zebra */
+  cursor: pointer; /* optional */
+}
+
+
+
+/*--- ZEBRA ---*/
+.zebra tbody tr:nth-child(odd) td,
+.zebra tbody tr:nth-child(odd) th {
+	background-color: #E5E5E5;
+}
+
+
+
+/*--- TABLE ROW CLASSES ---*/
+.results tr.highlight {
+	background-color: #E8F7FD;
+	color: #000;
+}
