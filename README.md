@@ -122,3 +122,7 @@ RELEASE NOTES
 =============
 
 1.0 - 2013/06/01 - Initial release
+
+1.0.1 - 2013/06/03 - modified "Use Len method" rule pattern (replaced double quotes with octal value 042 to eliminate false
+positives; added octal 047 for single quote expressions); modified ArrayNew(1) rule message
+
