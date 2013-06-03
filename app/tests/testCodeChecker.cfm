@@ -36,11 +36,23 @@
 <cfscript>
 	incrementvalue();
 </cfscript>
+<cfif x is "test">
+</cfif>
+<cfif x is 'test'>
+</cfif>
+<cfif x is ''>
+</cfif>
 <cfif x is "">
+</cfif>
+<cfif x eq ''>
 </cfif>
 <cfif x eq "">
 </cfif>
+<cfif x is not ''>
+</cfif>
 <cfif x is not "">
+</cfif>
+<cfif x neq ''>
 </cfif>
 <cfif x neq "">
 </cfif>
