@@ -192,7 +192,7 @@
 			variables.temprulestruct["message"] = "Always use len() instead of is "", eq "", is not "", neq """;
 			variables.temprulestruct["name"] = "Use Len method";
 			variables.temprulestruct["passonmatch"] = false;
-			variables.temprulestruct["pattern"] = "is\s+""|eq\s+""|is\s+not\s+""|neq\s+""";
+			variables.temprulestruct["pattern"] = "is\s+\042\042|eq\s+\042\042|is\s+not\s+\042\042|neq\s+\042\042|is\s+\047\047|eq\s+\047\047|is\s+not\s+\047\047|neq\s+\047\047";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
 			ArrayAppend(variables.rules,variables.temprulestruct);
@@ -386,7 +386,7 @@
 			variables.temprulestruct["customcode"] = "";
 			variables.temprulestruct["extensions"] = "cfm,cfc";
 			variables.temprulestruct["functionname"] = "checkCode";
-			variables.temprulestruct["message"] = "Avoid ArrayNew(1). Simply use ArrayNew().";
+			variables.temprulestruct["message"] = "Avoid ArrayNew(1). Simply use [].";
 			variables.temprulestruct["name"] = "Don't use ArrayNew(1) function";
 			variables.temprulestruct["passonmatch"] = false;
 			variables.temprulestruct["pattern"] = "ArrayNew\(1\)";
