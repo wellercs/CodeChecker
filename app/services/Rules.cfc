@@ -2,6 +2,7 @@
 	<cfset this.name ="Rules">
 
 	<cffunction name="init" access="public" output="false" returntype="any" hint="I initialize the component.">
+		<cfargument name="categories" default="_ALL" type="string" hint="I am a comma separated list of categories, _ALL for all categories" />
 		<cfscript>
 			variables.rules = [];
 
@@ -28,7 +29,10 @@
 			variables.temprulestruct["pattern"] = "\b(client)(?=(\[|\.\w))";
 			variables.temprulestruct["severity"] = 4;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
+			
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -43,7 +47,9 @@
 			variables.temprulestruct["pattern"] = "<cffile|<input.*type=\042file\042";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			/* PERFORMANCE RULES */
 			
@@ -60,8 +66,9 @@
 			variables.temprulestruct["pattern"] = "<cflock[\w\W]+<cflock[\w\W]+</cflock";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
-
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
 			variables.temprulestruct["category"] = "Performance";
@@ -75,7 +82,9 @@
 			variables.temprulestruct["pattern"] = "parameterExists\(";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -90,7 +99,9 @@
 			variables.temprulestruct["pattern"] = "isDefined\(";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -105,7 +116,9 @@
 			variables.temprulestruct["pattern"] = "Evaluate(?=\()";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -120,7 +133,9 @@
 			variables.temprulestruct["pattern"] = "DE(?=\()";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -135,7 +150,9 @@
 			variables.temprulestruct["pattern"] = "iif(?=\()";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -150,7 +167,9 @@
 			variables.temprulestruct["pattern"] = "StructFind(?=\()";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -165,7 +184,9 @@
 			variables.temprulestruct["pattern"] = "DecrementValue(?=\()";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -180,7 +201,9 @@
 			variables.temprulestruct["pattern"] = "IncrementValue(?=\()";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -195,7 +218,9 @@
 			variables.temprulestruct["pattern"] = "is\s+\042\042|eq\s+\042\042|is\s+not\s+\042\042|neq\s+\042\042|is\s+\047\047|eq\s+\047\047|is\s+not\s+\047\047|neq\s+\047\047";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -210,7 +235,9 @@
 			variables.temprulestruct["pattern"] = "setVariable\(";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			/* STANDARDS RULES */
 			
@@ -227,7 +254,9 @@
 			variables.temprulestruct["pattern"] = "<cfquery\s+";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -242,7 +271,9 @@
 			variables.temprulestruct["pattern"] = "\b(form|application|url|session|cgi|client|request|cookie)(?=(\[|\.\w))";
 			variables.temprulestruct["severity"] = 4;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -257,7 +288,9 @@
 			variables.temprulestruct["pattern"] = "is\s+true|is\s+not\s+true|is\s+false|is\s+not\s+false";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -272,7 +305,9 @@
 			variables.temprulestruct["pattern"] = "is\s+[0-9]+|is\s+not\s+[0-9]+|eq\s+\042[A-Za-z]+\042|eq\s+\042[0-9]+\042|neq\s+\042[A-Z][a-z]+\042|neq\s+\042[0-9]+\042";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -287,7 +322,9 @@
 			variables.temprulestruct["pattern"] = "\+\s+\042[0-9]\042|\-\s+\042[0-9]\042|\*\s+\042[0-9]\042|\/\s+\042[0-9]\042|\%\s+\042[0-9]\042";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -302,7 +339,9 @@
 			variables.temprulestruct["pattern"] = "\&\s+[0-9]";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = true;
@@ -317,7 +356,9 @@
 			variables.temprulestruct["pattern"] = "<cfcatch[\W]+[^\<cf][\W]+</cfcatch|<cfcatch></cfcatch>|<cfcatch>\W+</cfcatch>";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -332,7 +373,9 @@
 			variables.temprulestruct["pattern"] = ".*output=\042\s*true\s*\042|.*output=\s*true\s*";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "cfcomponent|cffunction";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = true;
@@ -347,7 +390,9 @@
 			variables.temprulestruct["pattern"] = "function init\(|<cffunction.*name=\042init\042";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = true;
@@ -362,7 +407,9 @@
 			variables.temprulestruct["pattern"] = "function onMissingMethod\(|<cffunction.*name=\042onMissingMethod\042";
 			variables.temprulestruct["severity"] = 3;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 		
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -377,7 +424,9 @@
 			variables.temprulestruct["pattern"] = ".*hint=\042\w+.*\042";
 			variables.temprulestruct["severity"] = 1;
 			variables.temprulestruct["tagname"] = "cfcomponent|cffunction|cfargument";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -392,7 +441,9 @@
 			variables.temprulestruct["pattern"] = "ArrayNew\(1\)";
 			variables.temprulestruct["severity"] = 1;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -407,7 +458,9 @@
 			variables.temprulestruct["pattern"] = "datasource=.*arguments";
 			variables.temprulestruct["severity"] = 1;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			/* MAINTENANCE RULES */
 			
@@ -424,7 +477,9 @@
 			variables.temprulestruct["pattern"] = "<cfabort|abort;";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 			
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -439,7 +494,9 @@
 			variables.temprulestruct["pattern"] = "<cfdump|writeDump\(";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -454,7 +511,9 @@
 			variables.temprulestruct["pattern"] = "<cflog|writeLog\(";
 			variables.temprulestruct["severity"] = 2;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
 
 			variables.temprulestruct = {};
 			variables.temprulestruct["bulkcheck"] = false;
@@ -469,7 +528,12 @@
 			variables.temprulestruct["pattern"] = "console\.log\(";
 			variables.temprulestruct["severity"] = 1;
 			variables.temprulestruct["tagname"] = "";
-			ArrayAppend(variables.rules,variables.temprulestruct);
+			if ( ARGUMENTS.categories is "_ALL" || ListFind( ARGUMENTS.categories, variables.temprulestruct["category"] ) ){
+				ArrayAppend(variables.rules,variables.temprulestruct);	
+			}
+
+			//writeDump( variables.rules );
+			//abort;
 
 			return this;
 		</cfscript>

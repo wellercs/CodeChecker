@@ -3,10 +3,12 @@
 	<cfset this.name = "CodeChecker" />
 
 	<cffunction name="init" access="public" output="false" returntype="any" hint="I initialize the component.">
+		<cfargument name="categories" default="_ALL" type="string" hint="I am a comma separated list of categories, _ALL for all categories" />
 		<cfscript>
 			variables.results = [];
-			variables.objRules = new Rules();
+			variables.objRules = new Rules( categories=ARGUMENTS.categories );
 			variables.rules = variables.objRules.get();
+			variables.categories = ARGUMENTS.categories;
 			return this;
 		</cfscript>
 	</cffunction>
@@ -36,16 +38,24 @@
 
 				<cfset readFile(filepath=local.filePath)>
 
-				<cfset runQueryParamScanner(filepath=local.filePath)>
-				<cfset runVarScoper(filepath=local.filePath)>
+				<cfif ListFind( variables.categories, 'QueryParamScanner')>
+					<cfset runQueryParamScanner(filepath=local.filePath)>
+				</cfif>	
+				<cfif ListFind( variables.categories, 'VarScoper')>
+					<cfset runVarScoper(filepath=local.filePath)>
+				</cfif>
 			</cfloop>
 		<cfelseif FileExists(arguments.filepath)>
 			<cfset local.filePath = arguments.filepath>
 
 			<cfset readFile(filepath=local.filePath)>
 
-			<cfset runQueryParamScanner(filepath=local.filePath)>
-			<cfset runVarScoper(filepath=local.filePath)>
+			<cfif ListFind( variables.categories, 'QueryParamScanner')>
+				<cfset runQueryParamScanner(filepath=local.filePath)>
+			</cfif>	
+			<cfif ListFind( variables.categories, 'VarScoper')>
+				<cfset runVarScoper(filepath=local.filePath)>
+			</cfif>
 		</cfif>
 
 		<cfreturn variables.results />
@@ -138,7 +148,7 @@
 			<cfset local.qpScannerResult = local.objQueryParamScanner.go()>
 
 			<cfloop query="local.qpScannerResult.data">
-				<cfset recordResult(directory=local.directory, file=local.file, rule="Missing cfqueryparam", message="All query variables should utilize cfqueryparam. This helps prevent sql injection. It also increases query performance by caching the execution plan.", linenumber=local.qpScannerResult.data.querystartline, category="Security", severity="5")>
+				<cfset recordResult(directory=local.directory, file=local.file, rule="Missing cfqueryparam", message="All query variables should utilize cfqueryparam. This helps prevent sql injection. It also increases query performance by caching the execution plan.", linenumber=local.qpScannerResult.data.querystartline, category="QueryParamScanner", severity="5")>
 			</cfloop>
 		</cfif>
 	</cffunction>
@@ -165,7 +175,7 @@
 
 			<cfloop array="#local.varScoperResult#" index="local.resultitem">
 				<cfloop array="#local.resultitem.unscopedarray#" index="local.unscopedstruct">
-					<cfset recordResult(directory=local.directory, file=local.file, rule="Unscoped CFC variable", message="All CFC variables should be scoped in order to prevent memory leaks.", linenumber=local.unscopedstruct.linenumber, category="Performance", severity="5")>
+					<cfset recordResult(directory=local.directory, file=local.file, rule="Unscoped CFC variable", message="All CFC variables should be scoped in order to prevent memory leaks.", linenumber=local.unscopedstruct.linenumber, category="VarScoper", severity="5")>
 				</cfloop>
 			</cfloop>
 		</cfif>
