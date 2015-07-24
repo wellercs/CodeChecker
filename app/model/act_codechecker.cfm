@@ -1,7 +1,8 @@
-﻿<cfset variables.arrCheckFiles = []>
+﻿<cfparam name="form.categories" default="_ALL">
+<cfset variables.arrCheckFiles = []>
 <cfset variables.arrCheckFiles = ListToArray(form.txaCheckFiles,"#chr(10)#,#chr(13)#")>
 
-<cfset variables.objCodeChecker = new services.CodeChecker()>
+<cfset variables.objCodeChecker = new services.CodeChecker( categories=form.categories )>
 
 <cfset session.formdata = Duplicate(form)>
 <cfset session.results = []>
