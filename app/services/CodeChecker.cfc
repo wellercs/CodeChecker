@@ -5,10 +5,7 @@
 	<cffunction name="init" access="public" output="false" returntype="any" hint="I initialize the component.">
 		<cfargument name="categories" default="" type="string" hint="I am a comma separated list of categories, _ALL for all categories" />
 		<cfscript>
-			
-			
 			variables.results = [];
-			
 			variables.objRules = new Rules();
 			variables.rules = variables.objRules.get();
 			variables.categories = ARGUMENTS.categories;
@@ -42,10 +39,10 @@
 
 				<cfset readFile(filepath=local.filePath)>
 
-				<cfif ListFind( variables.categories, 'QueryParamScanner')>
+				<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'QueryParamScanner')>
 					<cfset runQueryParamScanner(filepath=local.filePath)>
 				</cfif>	
-				<cfif ListFind( variables.categories, 'VarScoper')>
+				<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'VarScoper')>
 					<cfset runVarScoper(filepath=local.filePath)>
 				</cfif>
 			</cfloop>
@@ -54,10 +51,10 @@
 
 			<cfset readFile(filepath=local.filePath)>
 
-			<cfif ListFind( variables.categories, 'QueryParamScanner')>
+			<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'QueryParamScanner')>
 				<cfset runQueryParamScanner(filepath=local.filePath)>
 			</cfif>	
-			<cfif ListFind( variables.categories, 'VarScoper')>
+			<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'VarScoper')>
 				<cfset runVarScoper(filepath=local.filePath)>
 			</cfif>
 		</cfif>
