@@ -23,6 +23,19 @@
 	<cffunction name="get" access="public" output="false" returntype="array" hint="I return the array of rules.">
 		<cfreturn variables.rules />
 	</cffunction>
+	
+	<cffunction name="getCategories" access="public" output="false" returntype="array" hint="I return the array of rules.">
+		<cfset var result = []>
+		<cfset arrayAppend( result, "VarScoper")>
+		<cfset arrayAppend( result, "QueryParamScanner")>
+		<cfloop array="#variables.rules#" index="rule" >
+			<cfif ArrayContains( result, rule.category) eq false>
+				<cfset arrayAppend( result, rule.category)>
+			</cfif>	
+		</cfloop>	
+		<cfreturn result />
+	</cffunction>
+	
 
 	<cffunction name="onMissingMethod" hint="I catch it if someone passes in a bad method name">
 		<cfargument name="missingMethodName" type="string">

@@ -1,10 +1,4 @@
-﻿<cfset categoryList = []>
-<cfset categoryList.append('VarScoper')>
-<cfset categoryList.append('QueryParamScanner')>
-<cfset categoryList.append('Maintenance')>
-<cfset categoryList.append('Standards')>
-<cfset categoryList.append('Performance')>
-<cfset categoryList.append('Security')>
+﻿<cfset categoryList = new services.CodeChecker( ).getAllCategories()>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Product">
 	<head>
