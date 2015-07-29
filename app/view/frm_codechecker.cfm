@@ -1,5 +1,4 @@
-﻿<cfset variables.categoryList = new services.CodeChecker().getAllCategories()>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Product">
 	<head>
 		<title>CodeChecker</title>
@@ -13,7 +12,7 @@
 					<h4><label>Categories:</label></h4>
 					<div>
 						<input type="checkbox" id="categories_ALL" name="categories" value="_ALL" <cfif structKeyExists(session, "formdata") and structKeyExists(session.formdata, "categories") and listFind(session.formdata.categories, "_ALL")>checked="checked"</cfif> /><label for="categories_ALL">ALL</label><br />
-						<cfloop array="#variables.categoryList#" index="variables.categoryIndex">
+						<cfloop array="#request.categoryList#" index="variables.categoryIndex">
 							<input type="checkbox" id="categories_#variables.categoryIndex#" name="categories" value="#variables.categoryIndex#" <cfif structKeyExists(session, "formdata") and structKeyExists(session.formdata, "categories") and listFind(session.formdata.categories, variables.categoryIndex)>checked="checked"</cfif> /><label for="categories_#variables.categoryIndex#">#variables.categoryIndex#</label><br />
 						</cfloop>	
 					</div>

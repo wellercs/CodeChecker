@@ -8,6 +8,7 @@
 	<cfset this.setClientCookies = true>
 
 	<cfset this.mappings = structNew()>
+	<cfset this.mappings["/resources"] = getDirectoryFromPath(getCurrentTemplatePath()) & "assets/resources/">
 	<cfset this.mappings["/services"] = getDirectoryFromPath(getCurrentTemplatePath()) & "services/">
 
 	<cfset this.customtagpaths = "">
@@ -17,11 +18,13 @@
 	</cffunction>
 
 	<cffunction name="onApplicationEnd" returnType="void" output="false">
-		<cfargument name="applicationScope" required="true">
+		<cfargument name="applicationScope" type="struct" required="true">
 	</cffunction>
 
 	<cffunction name="onRequestStart" returnType="boolean" output="false">
 		<cfargument name="thePage" type="string" required="true">
+		<cfset request.rulesList = new services.Rules().getRules()>
+		<cfset request.categoryList = new services.Rules().getCategories()>
 		<cfreturn true>
 	</cffunction>
 
