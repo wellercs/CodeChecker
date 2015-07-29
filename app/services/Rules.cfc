@@ -7,7 +7,7 @@
 	<cfset this.setRules([])>
 
 	<cffunction name="init" access="public" output="false" returntype="any" hint="I initialize the component.">
-		<cfargument name="filepath" type="string" required="true" default="#expandPath('/resources')#/rules.json" hint="I am the file path defining the rules." />
+		<cfargument name="rulesDirPath" type="string" required="true" default="#expandPath('/resources/rules')#" hint="I am the directory path containing the rules." />
 		<cfscript>
 			//TODO: support cfscript patterns
 			//TODO: support multiline
@@ -17,7 +17,19 @@
 			//TODO: deprecated functions
 			//TODO: require return statement for return types other than void
 
-			this.setRules(deserializeJSON(fileRead(arguments.filepath)));
+			// path, recurse, listInfo, filter, sort
+			local.rulesFilePaths = directoryList(
+													arguments.rulesDirPath,
+													true,
+													"path",
+													"*.json",
+													"asc"
+												);
+
+			for ( local.ruleFile in local.rulesFilePaths ) {
+				// merge array
+				this.getRules().addAll(deserializeJSON(fileRead(local.ruleFile)));
+			}
 
 			for( local.rule in this.getRules() ) {
 				if ( NOT arrayFind(this.getCategories(), local.rule.category) ) {
