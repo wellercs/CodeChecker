@@ -8,7 +8,7 @@
 			variables.results = [];
 			variables.objRules = new Rules();
 			variables.rules = variables.objRules.get();
-			variables.categories = ARGUMENTS.categories;
+			variables.categories = arguments.categories;
 			
 			return this;
 		</cfscript>
@@ -195,10 +195,10 @@
 	<cffunction name="getCategories" access="public" output="false" returntype="any" hint="I return the list of Current Categories.">
 		<cfreturn variables.categories />
 	</cffunction>
+
 	<cffunction name="getAllCategories" access="public" output="false" returntype="array" hint="I return the list of All Categories.">
 		<cfreturn variables.objRules.getCategories() />
 	</cffunction>
-	
 
 	<cffunction name="onMissingMethod" hint="I catch it if someone passes in a bad method name.">
 		<cfargument name="missingMethodName" type="string">

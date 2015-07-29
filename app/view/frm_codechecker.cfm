@@ -1,4 +1,4 @@
-﻿<cfset categoryList = new services.CodeChecker( ).getAllCategories()>
+﻿<cfset variables.categoryList = new services.CodeChecker().getAllCategories()>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Product">
 	<head>
@@ -9,17 +9,15 @@
 		<cfoutput>
 			<h3>Code Checker Form</h3>
 			<form id="frmCodeChecker" name="frmCodeChecker" method="post" action="../model/act_codechecker.cfm">
-				
 				<div>
 					<h4><label>Categories:</label></h4>
 					<div>
-						<input type="checkbox" id="categories__ALL" name="categories" value="_ALL" <cfif structKeyExists(session,"formdata") and structKeyExists(session.formdata,"categories") and ListFind( session.formdata.categories, "_ALL" )>checked="yes"</cfif>><label for="categories_ALL">ALL</label><br>
-						<cfloop array="#categoryList#" index="i">
-							<input type="checkbox" id="categories_#i#" name="categories" value="#i#" <cfif structKeyExists(session,"formdata") and structKeyExists(session.formdata,"categories") and ListFind( session.formdata.categories, i )>checked="yes"</cfif>><label for="categories_#i#">#i#</label><br>
+						<input type="checkbox" id="categories_ALL" name="categories" value="_ALL" <cfif structKeyExists(session, "formdata") and structKeyExists(session.formdata, "categories") and listFind(session.formdata.categories, "_ALL")>checked="checked"</cfif> /><label for="categories_ALL">ALL</label><br />
+						<cfloop array="#variables.categoryList#" index="variables.categoryIndex">
+							<input type="checkbox" id="categories_#variables.categoryIndex#" name="categories" value="#variables.categoryIndex#" <cfif structKeyExists(session, "formdata") and structKeyExists(session.formdata, "categories") and listFind(session.formdata.categories, variables.categoryIndex)>checked="checked"</cfif> /><label for="categories_#variables.categoryIndex#">#variables.categoryIndex#</label><br />
 						</cfloop>	
 					</div>
 				</div>
-				
 				<div>
 					<h4><label for="txaCheckFiles">Files (separate by a carriage return):</label></h4>
 					<div>
