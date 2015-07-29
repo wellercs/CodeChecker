@@ -3,10 +3,13 @@
 	<cfset this.name = "CodeChecker" />
 
 	<cffunction name="init" access="public" output="false" returntype="any" hint="I initialize the component.">
+		<cfargument name="categories" default="" type="string" hint="I am a comma separated list of categories, _ALL for all categories" />
 		<cfscript>
 			variables.results = [];
 			variables.objRules = new Rules();
 			variables.rules = variables.objRules.get();
+			variables.categories = ARGUMENTS.categories;
+			
 			return this;
 		</cfscript>
 	</cffunction>
@@ -36,16 +39,24 @@
 
 				<cfset readFile(filepath=local.filePath)>
 
-				<cfset runQueryParamScanner(filepath=local.filePath)>
-				<cfset runVarScoper(filepath=local.filePath)>
+				<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'QueryParamScanner')>
+					<cfset runQueryParamScanner(filepath=local.filePath)>
+				</cfif>	
+				<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'VarScoper')>
+					<cfset runVarScoper(filepath=local.filePath)>
+				</cfif>
 			</cfloop>
 		<cfelseif FileExists(arguments.filepath)>
 			<cfset local.filePath = arguments.filepath>
 
 			<cfset readFile(filepath=local.filePath)>
 
-			<cfset runQueryParamScanner(filepath=local.filePath)>
-			<cfset runVarScoper(filepath=local.filePath)>
+			<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'QueryParamScanner')>
+				<cfset runQueryParamScanner(filepath=local.filePath)>
+			</cfif>	
+			<cfif variables.categories is "_ALL" or ListFind( variables.categories, 'VarScoper')>
+				<cfset runVarScoper(filepath=local.filePath)>
+			</cfif>
 		</cfif>
 
 		<cfreturn variables.results />
@@ -65,7 +76,7 @@
 			<cfset local.line = fileReadLine( local.dataFile ) />
 
 			<!--- run rules on each line --->
-			<cfset runRules(filepath=arguments.filepath, line=local.line, linenumber=local.lineNumber) />
+			<cfset runRules(filepath=arguments.filepath, line=local.line, linenumber=local.lineNumber, categories=variables.categories) />
 
 			<cfif fileIsEOF( local.dataFile )>
 				<!--- run rules on whole file. useful for rules where you are just testing the existence of something. --->
@@ -80,7 +91,7 @@
 		<cfargument name="filepath" type="string" required="true" default="" hint="I am the file path for which to review." />
 		<cfargument name="line" type="string" required="false" hint="I am the line of code for which to review." />
 		<cfargument name="linenumber" type="numeric" required="false" hint="I am the line number of the code for which to review." />
-
+		<cfargument name="categories" default="" type="string" hint="I am a comma separated list of categories, _ALL for all categories" />
 		<cfset var local = {} />
 
 		<cfset local.standardizedfilepath = Replace(arguments.filepath, "\", "/", "all")>
@@ -89,32 +100,34 @@
 		<cfset local.fileextension = ListLast(local.file, ".")>
 
 		<cfloop array="#variables.rules#" index="local.ruleitem">
-			<cfif NOT ListFindNoCase(local.ruleitem.extensions, local.fileextension, ",")>
-				<cfcontinue />
-			</cfif>
-			<cfif StructKeyExists(arguments,"line") AND NOT local.ruleitem.bulkcheck AND NOT ListLen(local.ruleitem.tagname,"|")>
-				<cfinvoke component="#local.ruleitem.componentname#" method="#local.ruleitem.functionname#" line="#arguments.line#" passonmatch="#local.ruleitem.passonmatch#" pattern="#local.ruleitem.pattern#" returnvariable="local.codeCheckerReturn" />
-				<cfif NOT local.codeCheckerReturn>
-					<cfset recordResult(directory=local.directory, file=local.file, rule=local.ruleitem.name, message=local.ruleitem.message, linenumber=arguments.linenumber, category=local.ruleitem.category, severity=local.ruleitem.severity)>
+			<cfif ARGUMENTS.categories is "_ALL" or ListFind( ARGUMENTS.categories, local.ruleitem["category"] )>
+				<cfif NOT ListFindNoCase(local.ruleitem.extensions, local.fileextension, ",")>
+					<cfcontinue />
 				</cfif>
-			<cfelseif StructKeyExists(arguments,"line") AND NOT local.ruleitem.bulkcheck AND ListLen(local.ruleitem.tagname,"|")>
-				<cfif REFindNoCase("<#Replace(local.ruleitem.tagname,'|','|<')#", arguments.line)>
+				<cfif StructKeyExists(arguments,"line") AND NOT local.ruleitem.bulkcheck AND NOT ListLen(local.ruleitem.tagname,"|")>
 					<cfinvoke component="#local.ruleitem.componentname#" method="#local.ruleitem.functionname#" line="#arguments.line#" passonmatch="#local.ruleitem.passonmatch#" pattern="#local.ruleitem.pattern#" returnvariable="local.codeCheckerReturn" />
 					<cfif NOT local.codeCheckerReturn>
 						<cfset recordResult(directory=local.directory, file=local.file, rule=local.ruleitem.name, message=local.ruleitem.message, linenumber=arguments.linenumber, category=local.ruleitem.category, severity=local.ruleitem.severity)>
 					</cfif>
+				<cfelseif StructKeyExists(arguments,"line") AND NOT local.ruleitem.bulkcheck AND ListLen(local.ruleitem.tagname,"|")>
+					<cfif REFindNoCase("<#Replace(local.ruleitem.tagname,'|','|<')#", arguments.line)>
+						<cfinvoke component="#local.ruleitem.componentname#" method="#local.ruleitem.functionname#" line="#arguments.line#" passonmatch="#local.ruleitem.passonmatch#" pattern="#local.ruleitem.pattern#" returnvariable="local.codeCheckerReturn" />
+						<cfif NOT local.codeCheckerReturn>
+							<cfset recordResult(directory=local.directory, file=local.file, rule=local.ruleitem.name, message=local.ruleitem.message, linenumber=arguments.linenumber, category=local.ruleitem.category, severity=local.ruleitem.severity)>
+						</cfif>
+					</cfif>
+				<cfelseif NOT StructKeyExists(arguments,"line") AND local.ruleitem.bulkcheck>
+					<!--- TODO: support dynamic path to jre-utils component --->
+					<cfset local.objJREUtils = createObject("component","services.QueryParamScanner.jre-utils").init()>
+					<cfset local.dataFile = FileRead(arguments.filepath)>
+					<cfset local.matches = local.objJREUtils.get( local.dataFile , local.ruleitem.pattern )/>
+					<cfif ( local.ruleitem.passonmatch AND NOT ArrayLen(local.matches) ) OR ( ArrayLen(local.matches) AND NOT local.ruleitem.passonmatch )>
+						<!--- TODO: report actual line number --->
+						<cfset recordResult(directory=local.directory, file=local.file, rule=local.ruleitem.name, message=local.ruleitem.message, linenumber=-1, category=local.ruleitem.category, severity=local.ruleitem.severity)>
+					</cfif>
+				<cfelse>
+					<cfcontinue />
 				</cfif>
-			<cfelseif NOT StructKeyExists(arguments,"line") AND local.ruleitem.bulkcheck>
-				<!--- TODO: support dynamic path to jre-utils component --->
-				<cfset local.objJREUtils = createObject("component","services.QueryParamScanner.jre-utils").init()>
-				<cfset local.dataFile = FileRead(arguments.filepath)>
-				<cfset local.matches = local.objJREUtils.get( local.dataFile , local.ruleitem.pattern )/>
-				<cfif ( local.ruleitem.passonmatch AND NOT ArrayLen(local.matches) ) OR ( ArrayLen(local.matches) AND NOT local.ruleitem.passonmatch )>
-					<!--- TODO: report actual line number --->
-					<cfset recordResult(directory=local.directory, file=local.file, rule=local.ruleitem.name, message=local.ruleitem.message, linenumber=-1, category=local.ruleitem.category, severity=local.ruleitem.severity)>
-				</cfif>
-			<cfelse>
-				<cfcontinue />
 			</cfif>
 		</cfloop>
 	</cffunction>
@@ -138,7 +151,7 @@
 			<cfset local.qpScannerResult = local.objQueryParamScanner.go()>
 
 			<cfloop query="local.qpScannerResult.data">
-				<cfset recordResult(directory=local.directory, file=local.file, rule="Missing cfqueryparam", message="All query variables should utilize cfqueryparam. This helps prevent sql injection. It also increases query performance by caching the execution plan.", linenumber=local.qpScannerResult.data.querystartline, category="Security", severity="5")>
+				<cfset recordResult(directory=local.directory, file=local.file, rule="Missing cfqueryparam", message="All query variables should utilize cfqueryparam. This helps prevent sql injection. It also increases query performance by caching the execution plan.", linenumber=local.qpScannerResult.data.querystartline, category="QueryParamScanner", severity="5")>
 			</cfloop>
 		</cfif>
 	</cffunction>
@@ -165,7 +178,7 @@
 
 			<cfloop array="#local.varScoperResult#" index="local.resultitem">
 				<cfloop array="#local.resultitem.unscopedarray#" index="local.unscopedstruct">
-					<cfset recordResult(directory=local.directory, file=local.file, rule="Unscoped CFC variable", message="All CFC variables should be scoped in order to prevent memory leaks.", linenumber=local.unscopedstruct.linenumber, category="Performance", severity="5")>
+					<cfset recordResult(directory=local.directory, file=local.file, rule="Unscoped CFC variable", message="All CFC variables should be scoped in order to prevent memory leaks.", linenumber=local.unscopedstruct.linenumber, category="VarScoper", severity="5")>
 				</cfloop>
 			</cfloop>
 		</cfif>
@@ -178,6 +191,14 @@
 	<cffunction name="getResults" access="public" output="false" returntype="any" hint="I return the results.">
 		<cfreturn variables.results />
 	</cffunction>
+	
+	<cffunction name="getCategories" access="public" output="false" returntype="any" hint="I return the list of Current Categories.">
+		<cfreturn variables.categories />
+	</cffunction>
+	<cffunction name="getAllCategories" access="public" output="false" returntype="array" hint="I return the list of All Categories.">
+		<cfreturn variables.objRules.getCategories() />
+	</cffunction>
+	
 
 	<cffunction name="onMissingMethod" hint="I catch it if someone passes in a bad method name.">
 		<cfargument name="missingMethodName" type="string">
