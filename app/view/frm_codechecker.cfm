@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<cfset request.rulesList = new services.Rules().getRules()>
+<cfset request.categoryList = new services.Rules().getCategories()>
+<!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Product">
 	<head>
 		<title>CodeChecker</title>

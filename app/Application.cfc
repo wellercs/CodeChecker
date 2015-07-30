@@ -23,8 +23,6 @@
 
 	<cffunction name="onRequestStart" returnType="boolean" output="false">
 		<cfargument name="thePage" type="string" required="true">
-		<cfset request.rulesList = new services.Rules().getRules()>
-		<cfset request.categoryList = new services.Rules().getCategories()>
 		<cfreturn true>
 	</cffunction>
 
