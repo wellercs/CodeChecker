@@ -1,0 +1,30 @@
+[
+    {
+        "pattern": "\\b(client)(?=(\\[|\\.\\w))",
+        "message": "Avoid using client scoped variables from within a CFM. Use session instead.",
+        "componentname": "CodeChecker",
+        "category": "Security",
+        "name": "Don't use client scoped variables in a CFM",
+        "passonmatch": false,
+        "extensions": "cfm",
+        "severity": "4",
+        "customcode": "",
+        "bulkcheck": false,
+        "tagname": "",
+        "functionname": "checkCode"
+    },
+    {
+        "pattern": "<cffile|<input.*type=\\042file\\042",
+        "message": "Warning: Ensure that file uploads use accept attribute and check for valid file extension and MIME type. For image files, also use IsImage().",
+        "componentname": "CodeChecker",
+        "category": "Security",
+        "name": "File upload warning",
+        "passonmatch": false,
+        "extensions": "cfm,cfc",
+        "severity": "5",
+        "customcode": "",
+        "bulkcheck": false,
+        "tagname": "",
+        "functionname": "checkCode"
+    }
+]

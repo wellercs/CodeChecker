@@ -1,0 +1,58 @@
+[
+    {
+        "pattern": "<cfabort|abort;",
+        "message": "Remove cfabort",
+        "componentname": "CodeChecker",
+        "category": "Maintenance",
+        "name": "Don't use Abort",
+        "passonmatch": false,
+        "extensions": "cfm,cfc",
+        "severity": "5",
+        "customcode": "",
+        "bulkcheck": false,
+        "tagname": "",
+        "functionname": "checkCode"
+    },
+    {
+        "pattern": "<cfdump|writeDump\\(",
+        "message": "Remove cfdump",
+        "componentname": "CodeChecker",
+        "category": "Maintenance",
+        "name": "Don't use Dump",
+        "passonmatch": false,
+        "extensions": "cfm,cfc",
+        "severity": "5",
+        "customcode": "",
+        "bulkcheck": false,
+        "tagname": "",
+        "functionname": "checkCode"
+    },
+    {
+        "pattern": "<cflog|writeLog\\(",
+        "message": "Remove cflog",
+        "componentname": "CodeChecker",
+        "category": "Maintenance",
+        "name": "Don't use Log",
+        "passonmatch": false,
+        "extensions": "cfm,cfc",
+        "severity": "2",
+        "customcode": "",
+        "bulkcheck": false,
+        "tagname": "",
+        "functionname": "checkCode"
+    },
+    {
+        "pattern": "console\\.log\\(",
+        "message": "Remove console log",
+        "componentname": "CodeChecker",
+        "category": "Maintenance",
+        "name": "Don't use Console Log",
+        "passonmatch": false,
+        "extensions": "cfm,js",
+        "severity": "1",
+        "customcode": "",
+        "bulkcheck": false,
+        "tagname": "",
+        "functionname": "checkCode"
+    }
+]
