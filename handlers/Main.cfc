@@ -40,6 +40,7 @@ component{
 	}
 
 	function run(event,rc,prc){
+		cfsetting( requestTimeout=5000 );
 		param name="rc.categories" default="";
 
 		rc.formdata = duplicate(form);

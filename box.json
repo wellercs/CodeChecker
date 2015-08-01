@@ -20,18 +20,18 @@
     "changelog":"https://github.com/wellercs/CodeChecker/releases",
     "type":"mvc",
     "keywords":[
-       "code",
-       "check",
-       "checker",
-       "review",
-       "reviewer",
-       "quality",
-       "qa",
-       "test",
-       "maintenance",
-       "performance",
-       "security",
-       "standards"
+        "code",
+        "check",
+        "checker",
+        "review",
+        "reviewer",
+        "quality",
+        "qa",
+        "test",
+        "maintenance",
+        "performance",
+        "security",
+        "standards"
     ],
     "private":false,
     "engines":[
@@ -57,10 +57,10 @@
     ],
     "contributors":[
         "Chris Weller <wellercs@gmail.com>",
-        "Gavin Pickin <gpickin@gmail.com>",
+        "Gavin Pickin <gpickin@gmail.com>"
     ],
     "dependencies":{
-        "coldbox":"4.1.0+00002"
+        "coldbox":"4.1.0"
     },
     "devDependencies":{
         
