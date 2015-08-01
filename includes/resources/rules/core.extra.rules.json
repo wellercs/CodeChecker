@@ -1,0 +1,30 @@
+[
+    {
+        "pattern": "",
+        "message": "All query variables should utilize cfqueryparam. This helps prevent sql injection. It also increases query performance by caching the execution plan.",
+        "componentname": "QueryParamScanner.qpscanner",
+        "category": "QueryParamScanner",
+        "name": "Missing cfqueryparam",
+        "passonmatch": false,
+        "extensions": "cfm,cfc",
+        "severity": "5",
+        "customcode": "",
+        "bulkcheck": true,
+        "tagname": "",
+        "functionname": "go"
+    },
+    {
+        "pattern": "",
+        "message": "All CFC variables should be scoped in order to prevent memory leaks.",
+        "componentname": "VarScoper.varScoper",
+        "category": "VarScoper",
+        "name": "Unscoped CFC variable",
+        "passonmatch": false,
+        "extensions": "cfc",
+        "severity": "5",
+        "customcode": "",
+        "bulkcheck": true,
+        "tagname": "",
+        "functionname": "runVarscoper"
+    }
+]
