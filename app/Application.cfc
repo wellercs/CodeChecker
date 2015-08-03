@@ -17,7 +17,7 @@
 	</cffunction>
 
 	<cffunction name="onApplicationEnd" returnType="void" output="false">
-		<cfargument name="applicationScope" required="true">
+		<cfargument name="applicationScope" type="struct" required="true">
 	</cffunction>
 
 	<cffunction name="onRequestStart" returnType="boolean" output="false">

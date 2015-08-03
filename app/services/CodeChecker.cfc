@@ -23,7 +23,7 @@
 		<cfreturn true />
     </cffunction>
 
-    <cffunction name="startCodeReview" access="public" returntype="array" output="false" hint="I return the banner placement options.">
+    <cffunction name="startCodeReview" access="public" returntype="array" output="false" hint="I start the code review.">
 		<cfargument name="filepath" type="string" required="true" hint="I am the directory or file path for which to review." />
 		<cfargument name="recurse" type="boolean" required="false" default="true" hint="I determine whether or not to review recursively." />
 
@@ -51,7 +51,7 @@
 		<cfreturn variables.results />
     </cffunction>
 
-    <cffunction name="readFile" access="public" returntype="void" output="false" hint="I record the result of the code review.">
+    <cffunction name="readFile" access="public" returntype="void" output="false" hint="I read the file and run the rules against the file.">
 		<cfargument name="filepath" type="string" required="true" hint="I am the file path for which to review." />
 
 		<cfset var local = {} />
@@ -119,7 +119,7 @@
 		</cfloop>
 	</cffunction>
 
-	<cffunction name="runQueryParamScanner" access="public" returntype="void" output="false" hint="I run the varScoper component.">
+	<cffunction name="runQueryParamScanner" access="public" returntype="void" output="false" hint="I run the qpscanner component.">
 		<cfargument name="filepath" type="string" required="true" default="" hint="I am the file path for which to review." />
 
 		<cfset var local = {}>
@@ -154,10 +154,8 @@
 		<cfset local.fileextension = ListLast(local.file, ".")>
 
 		<cfif local.fileextension IS "cfc">
-			<cfset arguments.fileParseText = FileRead(arguments.filepath)>
-
 			<!--- TODO: support dynamic path to varScoper component --->
-			<cfset local.objVarScoper = new services.VarScoper.varScoper(fileParseText=arguments.fileParseText)>
+			<cfset local.objVarScoper = new services.VarScoper.varScoper(fileParseText=FileRead(arguments.filepath))>
 
 			<cfset local.objVarScoper.runVarscoper() />
 
