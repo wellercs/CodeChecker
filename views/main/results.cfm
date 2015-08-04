@@ -14,7 +14,7 @@
 
 	<table class="table table-striped table-bordered table-hover table-condensed">
 		<caption>
-			Code Review Results
+			Code Review Results ( Check Time: #prc.executionTime#ms )
 		</caption>
 		<thead>
 			<tr>

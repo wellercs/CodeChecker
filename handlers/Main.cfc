@@ -34,6 +34,7 @@ component{
 	function run(event,rc,prc){
 		// increase timeout for checking
 		cfsetting( requestTimeout=5000 );
+		var sTime = getTickCount();
 		// param incoming data
 		param name="rc.categories" default="";
 		prc.errors = [];
@@ -83,7 +84,7 @@ component{
 			}
 
 			prc.results = codeCheckerService.getResults();
-
+			prc.executionTime = getTickCount() - stime;
 			event.setView( "main/results" );
 		}
 	}	

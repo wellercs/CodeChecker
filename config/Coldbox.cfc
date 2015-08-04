@@ -12,7 +12,7 @@
 
 			//Development Settings
 			reinitPassword			= "",
-			handlersIndexAutoReload = true,
+			handlersIndexAutoReload = false,
 
 			//Implicit Events
 			defaultEvent			= "Main.index",
@@ -40,9 +40,7 @@
 			customErrorTemplate		= "/coldbox/system/includes/BugReport.cfm",
 
 			//Application Aspects
-			handlerCaching 			= false,
-			eventCaching			= false,
-			proxyReturnCollection 	= false
+			handlerCaching 			= true
 		};
 
 		// custom settings
@@ -142,6 +140,8 @@
 	* Development environment
 	*/
 	function development(){
+		coldbox.handlersIndexAutoReload = true;
+		coldbox.handlerCaching = false;
 		coldbox.customErrorTemplate = "/coldbox/system/includes/BugReport.cfm";
 	}
 
