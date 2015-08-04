@@ -26,7 +26,6 @@ component{
 	// custom mappings
 	this.mappings["/codechecker"] 	= COLDBOX_APP_ROOT_PATH;
 	this.mappings["/coldbox"] 		= COLDBOX_APP_ROOT_PATH & "coldbox/";
-	this.mappings["/resources"] 	= COLDBOX_APP_ROOT_PATH & "includes/resources/";
 
 	// application start
 	public boolean function onApplicationStart(){
