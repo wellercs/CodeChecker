@@ -1,7 +1,7 @@
 /**
 * I provide functions for checking code quality.
 */
-component accessors="true" {
+component accessors="true" singleton{
 
 	// properties
 	property name="categories" 	type="string";

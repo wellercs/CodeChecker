@@ -1,7 +1,7 @@
 /**
 * I set the rules for the code checker.
 */
-component accessors="true" {
+component accessors="true" singleton{
 
 	property name="categories" 	type="array";
 	property name="rules" 		type="array";
