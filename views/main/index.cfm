@@ -16,7 +16,7 @@
 			<label for="categories">Categories:</label>
 			<div class="checkbox">
 				<label> 
-					<input type="checkbox" id="categories_ALL" name="categories" value="_ALL" <cfif structKeyExists(rc, "formdata") and structKeyExists(rc.formdata, "categories") and listFind(rc.formdata.categories, "_ALL")>checked="checked"</cfif> /> ALL
+					<input type="checkbox" id="categories_ALL" name="categories" value="_ALL" <cfif structKeyExists(rc, "formdata") and structKeyExists(rc.formdata, "categories") and listFind(rc.formdata.categories, "_ALL")>checked="checked"</cfif> /> <strong>ALL</strong>
 				</label>
 			</div>
 			<cfloop array="#prc.categoryList#" index="variables.categoryIndex">

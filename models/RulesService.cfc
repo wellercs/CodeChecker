@@ -3,18 +3,17 @@
 */
 component accessors="true" {
 
-	property name="categories" type="array" required="true" getter="true";
-	property name="rules" type="array" required="true" getter="true";
+	property name="categories" 	type="array";
+	property name="rules" 		type="array";
 
-	this.name = "Rules";
-	this.setCategories([]);
-	this.setRules([]);
-	
 	/**
 	* @hint I initialize the component.
 	* @rulesDirPath I am the directory path containing the rules.
 	*/
-	RulesService function init( string rulesDirPath = expandPath('/includes/resources/rules') ){
+	RulesService function init( string rulesDirPath = expandPath( '/codechecker/config/rules' ) ){
+
+		variables.categories 	= [];
+		variables.rules 		= [];
 
 		//TODO: support cfscript patterns
 		//TODO: support multiline
@@ -26,26 +25,25 @@ component accessors="true" {
 
 		// path, recurse, listInfo, filter, sort
 		local.rulesFilePaths = directoryList(
-												arguments.rulesDirPath,
-												true,
-												"path",
-												"*.json",
-												"asc"
-											);
+			arguments.rulesDirPath,
+			true,
+			"path",
+			"*.json",
+			"asc"
+		);
 
 		for ( local.ruleFile in local.rulesFilePaths ) {
-			// merge array
-			this.getRules().addAll(deserializeJSON(fileRead(local.ruleFile)));
+			// merge array of config data
+			variables.rules.addAll( deserializeJSON( fileRead( local.ruleFile ) ) );
 		}
 
-		for( local.rule in this.getRules() ) {
-			if ( NOT arrayFind(this.getCategories(), local.rule.category) ) {
-				arrayAppend(this.getCategories(), local.rule.category);
+		for( local.rule in variables.rules ) {
+			if ( NOT arrayFind( variables.categories, local.rule.category ) ) {
+				arrayAppend( variables.categories, local.rule.category);
 			}
 		}
 
 		return this;
-		
 	}
 
 }
