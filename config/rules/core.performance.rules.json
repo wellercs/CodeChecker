@@ -56,7 +56,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "[^\\w]DE(?=\\()",
+        "pattern": "DE(?=\\()",
         "message": "Avoid DE().",
         "componentname": "CodeChecker",
         "category": "Performance",
