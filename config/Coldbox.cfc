@@ -9,7 +9,6 @@
 			appName 				= "CodeChecker",
 			appDescription			= "A package for checking code quality.",
 			appAuthor				= "Chris Weller",
-			eventName 				= "event",
 
 			//Development Settings
 			reinitPassword			= "",
@@ -55,7 +54,7 @@
 		// create a function with the name of the environment so it can be executed if that environment is detected
 		// the value of the environment is a list of regex patterns to match the cgi.http_host.
 		environments = {
-			development = "localhost"
+			development = "localhost,127\.0\.0\.1"
 		};
 
 		// Module Directives
@@ -98,9 +97,7 @@
 			// {class="coldbox.system.interceptors.SES",
 			//  properties={}
 			// },
-			{class="interceptors.GlobalPreProcessor",
-			 properties={}
-			}
+			{ class="codechecker.interceptors.GlobalPreProcessor", properties={} }
 		];
 
 		/*
