@@ -1,4 +1,4 @@
-<cfcomponent output="false" displayname="qpscanner v0.7" singleton>
+<cfcomponent output="false" displayname="qpscanner v0.7">
 
 	<cffunction name="Struct" returntype="Struct" access="private"><cfreturn Arguments/></cffunction>
 

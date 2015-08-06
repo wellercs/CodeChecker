@@ -29,7 +29,7 @@
 
  --->
 
-<cfcomponent name="varscoper" 	hint="I am a component used to find improperly scoped variables within a cfc" singleton>
+<cfcomponent name="varscoper" 	hint="I am a component used to find improperly scoped variables within a cfc" >
 
 	<cfset variables.fileParseText 				= "" />
 	<cfset variables.varscoperStruct 			= structNew() />
