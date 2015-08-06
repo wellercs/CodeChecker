@@ -117,7 +117,7 @@
 			variables.temprulestruct["message"] = "Avoid DE().";
 			variables.temprulestruct["name"] = "Don't use DE method";
 			variables.temprulestruct["passonmatch"] = false;
-			variables.temprulestruct["pattern"] = "DE(?=\()";
+			variables.temprulestruct["pattern"] = "[^A-Z]DE(?=\()";
 			variables.temprulestruct["severity"] = 5;
 			variables.temprulestruct["tagname"] = "";
 			ArrayAppend(variables.rules,variables.temprulestruct);
