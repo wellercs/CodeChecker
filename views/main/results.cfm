@@ -7,6 +7,10 @@
 	</cfif>
 
 	<div class="pull-right margin10">
+		<a href="#event.buildLink( 'main.print' )#" class="btn btn-default">
+			Export
+		</a>
+		
 		<a href="#event.buildLink( 'main.index' )#" class="btn btn-default">
 			Back to Code Checker Form
 		</a>

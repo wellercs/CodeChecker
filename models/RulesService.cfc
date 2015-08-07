@@ -34,13 +34,18 @@ component accessors="true" singleton{
 
 		for ( local.ruleFile in local.rulesFilePaths ) {
 			// merge array of config data
-			variables.rules.addAll( deserializeJSON( fileRead( local.ruleFile ) ) );
+			if ( findNoCase( 'disabled',local.ruleFile ) == 0 ) {
+				variables.rules.addAll( deserializeJSON( fileRead( local.ruleFile ) ) );
+			}
+			
 		}
 
 		for( local.rule in variables.rules ) {
-			if ( NOT arrayFind( variables.categories, local.rule.category ) ) {
-				arrayAppend( variables.categories, local.rule.category);
-			}
+			if ( findNoCase( 'disabled',local.ruleFile ) == 0 ) {
+				if ( NOT arrayFind( variables.categories, local.rule.category ) ) {
+					arrayAppend( variables.categories, local.rule.category);
+				}
+			}	
 		}
 
 		return this;

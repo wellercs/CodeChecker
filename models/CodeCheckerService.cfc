@@ -28,7 +28,7 @@ component accessors="true"{
 		variables.wirebox 		= arguments.wirebox;
 		variables.utilService 	= arguments.utilService;
 		variables.categories 	= arguments.categories;
-		variables.rules 		= arguments.rulesService.getRules();
+		variables.rules 			= arguments.rulesService.getRules();
 
 		return this;
 	}
