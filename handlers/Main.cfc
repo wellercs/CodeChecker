@@ -30,6 +30,12 @@ component{
 	function results(event,rc,prc){
 		event.setView("main/results");
 	}
+	
+	function print(event,rc,prc){
+		prc.categoryList = rulesService.getCategories();
+		event.setView("main/print");
+	}
+
 
 	function run(event,rc,prc){
 		// increase timeout for checking
@@ -84,6 +90,7 @@ component{
 			}
 
 			prc.results = codeCheckerService.getResults();
+			session.results = prc.results;
 			prc.executionTime = getTickCount() - stime;
 			event.setView( "main/results" );
 		}
