@@ -91,6 +91,7 @@ component{
 
 			prc.results = codeCheckerService.getResults();
 			session.results = prc.results;
+			session.categories = rc.categories;
 			prc.executionTime = getTickCount() - stime;
 			event.setView( "main/results" );
 		}

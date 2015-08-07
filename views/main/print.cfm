@@ -19,7 +19,7 @@ querySetCell(result,"severity",session.results[i].severity);
 </cfscript>
 
 <!---This returns a distinct list of comma seperated categories--->
-<cfset vCategories = prc.categoryList>
+<cfset vCategories = listToArray(session.categories)>
 
 <!--- Queries are created named from the categories --->
 <cfloop index="k" array="#vCategories#">
@@ -56,7 +56,7 @@ for(i=1;i<=arrayLen(vCategories);i++){
 		//spreadsheet.write( workbook,path,overwrite );
 		binary=spreadsheet.readBinary(workbook);
 </cfscript>
-<cfheader name="Content-Disposition" value="inline;filename=checker.xls">
+<cfheader name="Content-Disposition" value="inline;filename=#dateformat(now(),"yyyymmdd")##timeformat(now(),"hhmm")#_codechecker.xls">
 <cfcontent type="application/vnd.ms-excel" variable="#binary#">
 
 
