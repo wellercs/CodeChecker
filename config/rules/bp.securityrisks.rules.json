@@ -14,7 +14,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "cfexecute\(",
+        "pattern": "cfexecute\\(",
         "message": "cfexecute script - Executes a CFML developer-specified process on a server computer.",
         "componentname": "CodeChecker",
         "category": "Best Practices - Security Risks",
@@ -42,7 +42,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "fileRead\(",
+        "pattern": "fileRead\\(",
         "message": "fileRead script - Manages interactions with server files. Different combinations cause different attributes to be required.",
         "componentname": "CodeChecker",
         "category": "Best Practices - Security Risks",
@@ -70,7 +70,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "cffileupload\(",
+        "pattern": "cffileupload\\(",
         "message": "cffileupload script - Uploads files to server",
         "componentname": "CodeChecker",
         "category": "Best Practices - Security Risks",
@@ -98,7 +98,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "cfftp\(",
+        "pattern": "cfftp\\(",
         "message": "cfftp script - Lets users implement File Transfer Protocol (FTP) operations.",
         "componentname": "CodeChecker",
         "category": "Best Practices - Security Risks",
@@ -126,7 +126,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "directoryList\(",
+        "pattern": "directoryList\\(",
         "message": "directoryList script - Allows you to list, create, delete or rename a directory in the server file system.",
         "componentname": "CodeChecker",
         "category": "Best Practices - Security Risks",
@@ -154,7 +154,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "cfregistry\(",
+        "pattern": "cfregistry\\(",
         "message": "cfregistry script - Reads, writes, and deletes keys and values in the system registry.",
         "componentname": "CodeChecker",
         "category": "Best Practices - Security Risks",
@@ -182,7 +182,7 @@
         "functionname": "checkCode"
     },
     {
-        "pattern": "cfadmin\(",
+        "pattern": "cfadmin\\(",
         "message": "cfadmin script - Used for all changes one wants to do in the Railo configuration",
         "componentname": "CodeChecker",
         "category": "Best Practices - Security Risks",
