@@ -1,0 +1,105 @@
+{
+    "name":"CodeChecker",
+    "version":"2.0.0",
+    "author":"Chris Weller <wellercs@gmail.com>",
+    "location":"USA",
+    "directory":"CodeChecker",
+    "createPackageDirectory":true,
+    "packageDirectory":"CodeChecker",
+    "homepage":"https://github.com/wellercs/CodeChecker",
+    "documentation":"https://github.com/wellercs/CodeChecker/wiki",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/wellercs/CodeChecker"
+    },
+    "bugs":"https://github.com/wellercs/CodeChecker/issues",
+    "slug":"CodeChecker",
+    "shortDescription":"A package for checking code quality.",
+    "description":"This package uses rules to evaluate code on the local system and report back possible issues based on maintenance, performance, security, and standards.",
+    "instructions":"https://github.com/wellercs/CodeChecker/wiki",
+    "changelog":"https://github.com/wellercs/CodeChecker/releases",
+    "type":"projects",
+    "keywords":[
+        "code",
+        "check",
+        "checker",
+        "review",
+        "reviewer",
+        "quality",
+        "qa",
+        "test",
+        "maintenance",
+        "performance",
+        "security",
+        "standards"
+    ],
+    "private":false,
+    "engines":[
+        {
+            "type":"railo",
+            "version":">=4.1.x"
+        },
+        {
+            "type":"adobe",
+            "version":">=9.0.0"
+        },
+        {
+            "type":"lucee",
+            "version":">4.5"
+        }
+    ],
+    "projectURL":"https://github.com/wellercs/CodeChecker",
+    "license":[
+        {
+            "type":"Apache2",
+            "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    ],
+    "contributors":[
+        "Chris Weller <wellercs@gmail.com>",
+        "Gavin Pickin <gpickin@gmail.com>",
+        "Luis Majano <lmajano@ortussolutions.com"
+    ],
+    "dependencies":{
+        "coldbox":"4.1.0"
+    },
+    "devDependencies":{
+        
+    },
+    "installPaths":{
+        "coldbox":"coldbox"
+    },
+    "ignore":[
+        "**/.*",
+        "tests/**"
+    ],
+    "testbox":{
+        "runner":[
+            {
+                "default":""
+            }
+        ],
+        "labels":[
+            
+        ],
+        "reporter":"",
+        "reporterResults":"",
+        "bundles":[
+            ""
+        ],
+        "directory":{
+            "mapping":"",
+            "recurse":true
+        },
+        "watchers":[
+            
+        ],
+        "notify":{
+            "emails":[
+                
+            ],
+            "growl":"",
+            "url":""
+        }
+    }
+}
