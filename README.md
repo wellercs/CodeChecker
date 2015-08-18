@@ -1,8 +1,8 @@
 CodeChecker
-===========
+============
 
 INSTRUCTIONS
-============
+=============
 
 Deploy this application to any web-accessible directory.
 
