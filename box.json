@@ -4,6 +4,7 @@
     "author":"Chris Weller <wellercs@gmail.com>",
     "homepage":"https://github.com/wellercs/CodeChecker",
     "documentation":"https://github.com/wellercs/CodeChecker/wiki",
+    "createPackageDirectory":false,
     "repository":{
         "type":"git",
         "url":"https://github.com/wellercs/CodeChecker"
