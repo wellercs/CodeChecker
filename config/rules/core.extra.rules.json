@@ -20,7 +20,7 @@
         "category": "VarScoper",
         "name": "Unscoped CFC variable",
         "passonmatch": false,
-        "extensions": "cfc",
+        "extensions": "cfm,cfc",
         "severity": "5",
         "customcode": "",
         "bulkcheck": true,
