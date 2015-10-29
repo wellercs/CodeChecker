@@ -18,20 +18,20 @@
     "description":"This package uses rules to evaluate code on the local system and report back possible issues based on maintenance, performance, security, and standards.",
     "instructions":"https://github.com/wellercs/CodeChecker/wiki",
     "changelog":"https://github.com/wellercs/CodeChecker/releases",
-    "type":"mvc",
+    "type":"projects",
     "keywords":[
-       "code",
-       "check",
-       "checker",
-       "review",
-       "reviewer",
-       "quality",
-       "qa",
-       "test",
-       "maintenance",
-       "performance",
-       "security",
-       "standards"
+        "code",
+        "check",
+        "checker",
+        "review",
+        "reviewer",
+        "quality",
+        "qa",
+        "test",
+        "maintenance",
+        "performance",
+        "security",
+        "standards"
     ],
     "private":false,
     "engines":[
@@ -58,9 +58,10 @@
     "contributors":[
         "Chris Weller <wellercs@gmail.com>",
         "Gavin Pickin <gpickin@gmail.com>",
+        "Luis Majano <lmajano@ortussolutions.com"
     ],
     "dependencies":{
-        "coldbox":"4.1.0+00002"
+        "coldbox":"4.1.0"
     },
     "devDependencies":{
         
@@ -70,8 +71,7 @@
     },
     "ignore":[
         "**/.*",
-        "test",
-        "tests"
+        "tests/**"
     ],
     "testbox":{
         "runner":[

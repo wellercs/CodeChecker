@@ -1,17 +1,24 @@
 <cfoutput>
-	<div style="float:right;">
-		<a href="#event.buildLink( 'main.index' )#">
-			Back to Code Checker Form
-		</a>
-	</div>
+<section>
 	<cfif ArrayLen(prc.failedFiles)>
 		<h3>Files Not Found</h3>
 		<cfdump var="#prc.failedFiles#">
 		<hr />
 	</cfif>
+
+	<div class="pull-right margin10">
+		<a href="#event.buildLink( 'main.print' )#" class="btn btn-default">
+			Export
+		</a>
+		
+		<a href="#event.buildLink( 'main.index' )#" class="btn btn-default">
+			Back to Code Checker Form
+		</a>
+	</div>
+
 	<table class="table table-striped table-bordered table-hover table-condensed">
 		<caption>
-			Code Review Results
+			Code Review Results ( Check Time: #prc.executionTime#ms )
 		</caption>
 		<thead>
 			<tr>
@@ -38,4 +45,5 @@
 			</cfloop>
 		</tbody>
 	</table>
+</section>
 </cfoutput>
