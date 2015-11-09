@@ -1,0 +1,51 @@
+{
+    "name":"ColdBox Debugger",
+    "version":"1.1.0",
+    "author":"Curt Gratz <gratzc@compknowhow.com",
+    "slug":"cbdebugger",
+    "type":"modules",
+    "homepage":"http://www.coldbox.org",
+    "documentation":"http://wiki.coldbox.org",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/ColdBox/cbox-debugger"
+    },
+    "shortDescription":"The official ColdBox 4 debugger module",
+    "license":[
+        {
+            "type":"Apache2",
+            "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    ],
+    "contributors":[
+        "Brad Wood <bdw429s@gmail.com>",
+        "Luis Majano <lmajano@ortussolutions.com>"
+    ],
+    "engines":[
+        {
+            "type":"lucee",
+            "version":">4.5"
+        },
+        {
+            "type":"railo",
+            "version":">4.1"
+        },
+        {
+            "type":"adobe",
+            "version":">9.02"
+        }
+    ],
+    "testbox":{
+        "runner":{
+            "cf10":"http://cf10cboxdev.jfetmac/codedepot/cbox-debugger/test/runner.cfm",
+            "railo":"http://railocboxdev.jfetmac/codedepot/cbox-debugger/test/runner.cfm"
+        }
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests",
+        "apidocs",
+        "*/.md"
+    ]
+}
