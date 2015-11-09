@@ -6,20 +6,20 @@
 
 <cfscript>
 result=queryNew("directory,file,rule,message,linenumber,category,severity");
-for(var i=1; i<=ArrayLen(session.results);i=(i+1)){
+for(var i=1; i<=ArrayLen(cachebox.getCache("default").get(prc.resultsCacheKey));i=(i+1)){
 queryAddRow(result);
-querySetCell(result,"directory",session.results[i].directory);
-querySetCell(result,"file",session.results[i].file);
-querySetCell(result,"rule",session.results[i].rule);
-querySetCell(result,"message",session.results[i].message);
-querySetCell(result,"linenumber",session.results[i].linenumber);
-querySetCell(result,"category",session.results[i].category);
-querySetCell(result,"severity",session.results[i].severity);
+querySetCell(result,"directory",cachebox.getCache("default").get(prc.resultsCacheKey)[i].directory);
+querySetCell(result,"file",cachebox.getCache("default").get(prc.resultsCacheKey)[i].file);
+querySetCell(result,"rule",cachebox.getCache("default").get(prc.resultsCacheKey)[i].rule);
+querySetCell(result,"message",cachebox.getCache("default").get(prc.resultsCacheKey)[i].message);
+querySetCell(result,"linenumber",cachebox.getCache("default").get(prc.resultsCacheKey)[i].linenumber);
+querySetCell(result,"category",cachebox.getCache("default").get(prc.resultsCacheKey)[i].category);
+querySetCell(result,"severity",cachebox.getCache("default").get(prc.resultsCacheKey)[i].severity);
 }
 </cfscript>
 
 <!---This returns a distinct list of comma seperated categories--->
-<cfset vCategories = listToArray(session.categories)>
+<cfset vCategories = listToArray(cachebox.getCache("default").get(prc.categoriesCacheKey))>
 
 <!--- Queries are created named from the categories --->
 <cfloop index="k" array="#vCategories#">

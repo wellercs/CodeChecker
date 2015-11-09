@@ -35,7 +35,7 @@
 			controllerDecorator			= "",
 
 			//Error/Exception Handling
-			exceptionHandler		= "",
+			exceptionHandler		= "main.onException",
 			onInvalidEvent			= "",
 			customErrorTemplate		= "/coldbox/system/includes/BugReport.cfm",
 
@@ -69,10 +69,22 @@
 		logBox = {
 			// Define Appenders
 			appenders = {
-				coldboxTracer = { class="coldbox.system.logging.appenders.ConsoleAppender" }
+				coldboxTracer = { class="coldbox.system.logging.appenders.ConsoleAppender" },
+				codeCheckerAppender = {
+					class = "coldbox.system.logging.appenders.CFAppender",
+					properties = {
+						logType = "file",
+						fileName = "codechecker"
+					}
+				},
 			},
 			// Root Logger
 			root = { levelmax="INFO", appenders="*" },
+			// Granualr Categories
+			categories = {
+				"coldbox.system" = { levelMin="FATAL", levelMax="INFO", appenders="*" },
+				"codechecker" = { appenders="codeCheckerAppender" },
+			},
 			// Implicit Level Categories
 			info = [ "coldbox.system" ]
 		};
@@ -133,6 +145,30 @@
 			blog_dsn = {name="myBlog", dbType="oracle", username="root", password="pass"}
 		};
 		*/
+
+		// Debugger Settings
+		debugger = {
+			// Activate debugger for everybody
+			debugMode = true,
+			// Setup a password for the panel
+			debugPassword = "",
+			enableDumpVar = true,
+			persistentRequestProfiler = true,
+			maxPersistentRequestProfilers = 10,
+			maxRCPanelQueryRows = 50,
+			showTracerPanel = true,
+			expandedTracerPanel = true,
+			showInfoPanel = true,
+			expandedInfoPanel = true,
+			showCachePanel = true,
+			expandedCachePanel = false,
+			showRCPanel = true,
+			expandedRCPanel = false,
+			showModulesPanel = true,
+			expandedModulesPanel = false,
+			showRCSnapshots = false,
+			wireboxCreationProfiler = false
+		};
 
 	}
 

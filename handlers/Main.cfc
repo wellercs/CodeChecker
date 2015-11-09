@@ -33,6 +33,8 @@ component{
 	
 	function print(event,rc,prc){
 		prc.categoryList = rulesService.getCategories();
+		prc.resultsCacheKey 	= "results_" & rc.key;
+		prc.categoriesCacheKey	= "categories_" & rc.key;
 		event.setView("main/print");
 	}
 
@@ -72,10 +74,13 @@ component{
 			return index( argumentCollection=arguments );
 		}
 		else {
-			prc.checkFiles 		= listToArray( rc.txaCheckFiles, "#chr(10)#, #chr(13)#" );
-			prc.checkedFiles 	= [];
-			prc.failedFiles 	= [];
-			prc.results 		= [];
+			prc.uuid 				= createUUID();
+			prc.checkFiles 			= listToArray( rc.txaCheckFiles, "#chr(10)#, #chr(13)#" );
+			prc.checkedFiles 		= [];
+			prc.failedFiles 		= [];
+			prc.results 			= [];
+			prc.resultsCacheKey 	= "results_" & prc.uuid;
+			prc.categoriesCacheKey	= "categories_" & prc.uuid;
 
 			// setup categories
 			codeCheckerService.setCategories( rc.categories );
@@ -90,8 +95,8 @@ component{
 			}
 
 			prc.results = codeCheckerService.getResults();
-			session.results = prc.results;
-			session.categories = rc.categories;
+			cachebox.getCache("default").set(prc.resultsCacheKey, prc.results, 60, 20); // set in cache with 60 minute timeout and 20 minute idle timeout
+			cachebox.getCache("default").set(prc.categoriesCacheKey, rc.categories, 60, 20); // set in cache with 60 minute timeout and 20 minute idle timeout
 			prc.executionTime = getTickCount() - stime;
 			event.setView( "main/results" );
 		}
@@ -121,10 +126,14 @@ component{
 	}
 
 	function onException(event,rc,prc){
-		//Grab Exception From private request collection, placed by ColdBox Exception Handling
-		var exception = prc.exception;
-		//Place exception handler below:
+		// Log the exception via LogBox
+		log.error( prc.exception.getMessage() & prc.exception.getDetail(), prc.exception.getMemento() );
 
+		// Flash where the exception occurred
+		flash.put("exceptionURL", event.getCurrentRoutedURL() );
+
+		// Relocate to fail page
+		// setNextEvent("main.fail");
 	}
 
 }

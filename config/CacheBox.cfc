@@ -9,6 +9,14 @@
 		cacheBox = {
 			// LogBox config already in coldbox app, not needed
 			// logBoxConfig = "coldbox.system.web.config.LogBox", 
+
+			// Scope registration, automatically register the cachebox factory instance on any CF scope
+			// By default it registers itself on application scope
+			scopeRegistration = {
+				enabled = true,
+				scope   = "application", // valid CF scope
+				key     = "cacheBox"
+			},
 			
 			// The defaultCache has an implicit name "default" which is a reserved cache name
 			// It also has a default provider of cachebox which cannot be changed.
@@ -43,7 +51,11 @@
 						objectStore = "ConcurrentSoftReferenceStore" //memory sensitive
 					}
 				}		
-			}		
+			}
+
+			// Register all event listeners here, they are created in the specified order
+			// not necessary as you can register listeners via the main ColdBox interceptors section
+			// listeners = []
 		};
 	}	
 

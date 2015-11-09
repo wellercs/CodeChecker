@@ -7,7 +7,7 @@
 	</cfif>
 
 	<div class="pull-right margin10">
-		<a href="#event.buildLink( 'main.print' )#" class="btn btn-default">
+		<a href="#event.buildLink( linkto='main.print', queryString='key=#prc.uuid#' )#" class="btn btn-default">
 			Export
 		</a>
 		
