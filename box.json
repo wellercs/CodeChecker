@@ -61,13 +61,15 @@
         "Luis Majano <lmajano@ortussolutions.com"
     ],
     "dependencies":{
-        "coldbox":"4.1.0"
+        "coldbox":"4.1.0",
+        "cbdebugger":"1.1.0"
     },
     "devDependencies":{
         
     },
     "installPaths":{
-        "coldbox":"coldbox"
+        "coldbox":"coldbox",
+        "cbdebugger":"modules\\cbdebugger"
     },
     "ignore":[
         "**/.*",
