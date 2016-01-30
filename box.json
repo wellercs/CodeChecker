@@ -2,12 +2,9 @@
     "name":"CodeChecker",
     "version":"2.0.0",
     "author":"Chris Weller <wellercs@gmail.com>",
-    "location":"USA",
-    "directory":"CodeChecker",
-    "createPackageDirectory":true,
-    "packageDirectory":"CodeChecker",
     "homepage":"https://github.com/wellercs/CodeChecker",
     "documentation":"https://github.com/wellercs/CodeChecker/wiki",
+    "createPackageDirectory":false,
     "repository":{
         "type":"git",
         "url":"https://github.com/wellercs/CodeChecker"
@@ -61,47 +58,10 @@
         "Luis Majano <lmajano@ortussolutions.com"
     ],
     "dependencies":{
-        "coldbox":"4.1.0",
-        "cbdebugger":"1.1.0"
-    },
-    "devDependencies":{
-        
-    },
-    "installPaths":{
-        "coldbox":"coldbox",
-        "cbdebugger":"modules\\cbdebugger"
+        "coldbox":"4.1.0"
     },
     "ignore":[
         "**/.*",
         "tests/**"
-    ],
-    "testbox":{
-        "runner":[
-            {
-                "default":""
-            }
-        ],
-        "labels":[
-            
-        ],
-        "reporter":"",
-        "reporterResults":"",
-        "bundles":[
-            ""
-        ],
-        "directory":{
-            "mapping":"",
-            "recurse":true
-        },
-        "watchers":[
-            
-        ],
-        "notify":{
-            "emails":[
-                
-            ],
-            "growl":"",
-            "url":""
-        }
-    }
+    ]
 }
