@@ -36,7 +36,7 @@
 
 			//Error/Exception Handling
 			exceptionHandler		= "main.onException",
-			onInvalidEvent			= "",
+			onInvalidEvent			= "main.pageNotFound",
 			customErrorTemplate		= "/coldbox/system/includes/BugReport.cfm",
 
 			//Application Aspects

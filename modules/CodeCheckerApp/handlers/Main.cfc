@@ -133,7 +133,18 @@ component{
 		flash.put("exceptionURL", event.getCurrentRoutedURL() );
 
 		// Relocate to fail page
-		// setNextEvent("main.fail");
+		setNextEvent("main.fail");
+	}
+
+	function pageNotFound(event,rc,prc){
+		// Log a warning
+		log.warn( "Invalid page detected: #prc.invalidEvent#");
+
+		// Do a quick page not found and 404 error
+		// event.renderData( data="<h1>Page Not Found</h1>", statusCode=404 );
+
+		// Set a page for rendering and a 404 header
+		event.setView( "main/404" ).setHTTPHeader( "404", "Page Not Found" );
 	}
 
 }
