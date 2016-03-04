@@ -27,6 +27,7 @@ component{
 	this.mappings["/codechecker"] 		= expandPath( "./../../" );
 	this.mappings["/codecheckerapp"] 	= COLDBOX_APP_ROOT_PATH;
 	this.mappings["/coldbox"] 			= COLDBOX_APP_ROOT_PATH & "coldbox/";
+	this.mappings["/models"] 			= expandPath( "./../../models/" );
 
 	// application start
 	public boolean function onApplicationStart(){
