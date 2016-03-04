@@ -1,5 +1,5 @@
 {
-    "name":"CodeChecker",
+    "name":"CodeCheckerApp",
     "version":"2.0.0",
     "author":"Chris Weller <wellercs@gmail.com>",
     "homepage":"https://github.com/wellercs/CodeChecker",
@@ -10,9 +10,9 @@
         "url":"https://github.com/wellercs/CodeChecker"
     },
     "bugs":"https://github.com/wellercs/CodeChecker/issues",
-    "slug":"codechecker",
-    "shortDescription":"A library for checking code quality.",
-    "description":"This library uses custom rules to evaluate code quality.",
+    "slug":"codechecker-app",
+    "shortDescription":"A package for checking code quality.",
+    "description":"This package uses rules to evaluate code on the local system and report back possible issues based on maintenance, performance, security, and standards.",
     "instructions":"https://github.com/wellercs/CodeChecker/wiki",
     "changelog":"https://github.com/wellercs/CodeChecker/releases",
     "type":"projects",
@@ -58,10 +58,13 @@
         "Luis Majano <lmajano@ortussolutions.com"
     ],
     "dependencies":{
-
+        "coldbox":"4.1.0+00002"
     },
     "ignore":[
         "**/.*",
         "tests/**"
-    ]
+    ],
+    "installPaths":{
+        "coldbox":"coldbox"
+    }
 }

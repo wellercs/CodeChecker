@@ -24,8 +24,9 @@ component{
 	this.javaSettings = { loadPaths = [ "lib" ], reloadOnChange = false };
 
 	// custom mappings
-	this.mappings["/codechecker"] 	= COLDBOX_APP_ROOT_PATH;
-	this.mappings["/coldbox"] 		= COLDBOX_APP_ROOT_PATH & "coldbox/";
+	this.mappings["/codechecker"] 		= expandPath( "./../../" );
+	this.mappings["/codecheckerapp"] 	= COLDBOX_APP_ROOT_PATH;
+	this.mappings["/coldbox"] 			= COLDBOX_APP_ROOT_PATH & "coldbox/";
 
 	// application start
 	public boolean function onApplicationStart(){

@@ -6,7 +6,7 @@
 		// coldbox directives
 		coldbox = {
 			//Application Setup
-			appName 				= "CodeChecker",
+			appName 				= "CodeCheckerApp",
 			appDescription			= "A package for checking code quality.",
 			appAuthor				= "Chris Weller",
 
@@ -107,7 +107,7 @@
 			// {class="coldbox.system.interceptors.SES",
 			//  properties={}
 			// },
-			{ class="codechecker.interceptors.GlobalPreProcessor", properties={} }
+			{ class="codecheckerapp.interceptors.GlobalPreProcessor", properties={} }
 		];
 
 		/*
