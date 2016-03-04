@@ -11,8 +11,8 @@ component {
     this.dependencies 		= [];
 
     function configure(){
-    	settings = {},
-    	interceptors = [],
-    	interceptorSettings = { customInterceptionPoints = "" }
+    	settings = {};
+    	interceptors = [];
+    	interceptorSettings = { customInterceptionPoints = "" };
     }
 }
