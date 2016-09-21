@@ -39,7 +39,7 @@
 	<cfset variables.currentLineCountPosition	= 1 />
 	<cfset variables.currentLineCountFuncPos	= 1 />
 	<cfset variables.currentFunctionName		= "" />
-	<cfset variables.ignoredScopes				= "super,variables,this,cgi,form,url,application,arguments,cfcatch,cgi,client,cookie,request,server,session" />
+	<cfset variables.ignoredScopes				= "super,variables,this,cgi,form,url,application,arguments,cfcatch,cgi,client,cookie,request,server,session,instance,rc,prc,local,event" />
 	<cfset variables.showDuplicates				= false />
 	<cfset variables.showLineNumbers			= true />
 	<cfset variables.parseCFscript				= false />
