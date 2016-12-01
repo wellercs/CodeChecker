@@ -1,6 +1,6 @@
 {
     "name":"CodeChecker",
-    "version":"2.0.0",
+    "version":"2.0.1",
     "author":"Chris Weller <wellercs@gmail.com>",
     "homepage":"https://github.com/wellercs/CodeChecker",
     "documentation":"https://github.com/wellercs/CodeChecker/wiki",
@@ -33,10 +33,6 @@
     "private":false,
     "engines":[
         {
-            "type":"railo",
-            "version":">=4.1.x"
-        },
-        {
             "type":"adobe",
             "version":">=9.0.0"
         },
@@ -58,7 +54,7 @@
         "Luis Majano <lmajano@ortussolutions.com"
     ],
     "dependencies":{
-        "coldbox":"4.1.0"
+        "coldbox":"^4.3.0"
     },
     "ignore":[
         "**/.*",
