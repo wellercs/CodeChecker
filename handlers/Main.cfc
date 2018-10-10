@@ -1,21 +1,9 @@
-/**
-* I am a new handler
-*/
 component{
 
 	// DI
-	property name='codeCheckerService' 	inject='codeCheckerService';
-	property name='rulesService' 		inject='rulesService';
-	
-	// OPTIONAL HANDLER PROPERTIES
-	this.prehandler_only 	= "";
-	this.prehandler_except 	= "";
-	this.posthandler_only 	= "";
-	this.posthandler_except = "";
-	this.aroundHandler_only = "";
-	this.aroundHandler_except = "";		
-	// REST Allowed HTTP Methods Ex: this.allowedMethods = {delete='POST,DELETE',index='GET'}
-	this.allowedMethods = {};
+	property name='codeCheckerService' 	inject='codeCheckerService@codechecker-core';
+	property name='rulesService' 		inject='rulesService@codechecker-core';
+	property name='ExportService' 		inject='ExportService@codechecker-core';
 	
 	function preHandler( event, rc, prc, action, eventArguments ){
 		event.setValue( name='pageTitle', value='Code Checker Form', private=true );
@@ -32,7 +20,7 @@ component{
 	}
 	
 	function print(event,rc,prc){
-		prc.categoryList = rulesService.getCategories();
+		prc.binary = ExportService.generateExcelReport( session.results, session.categories );
 		event.setView("main/print");
 	}
 
@@ -43,6 +31,9 @@ component{
 		var sTime = getTickCount();
 		// param incoming data
 		param name="rc.categories" default="";
+		if( rc.categories == '_all' ) {
+			rc.categories = rulesService.getCategories().toList();
+		}
 		prc.errors = [];
 
 		// verify categories
@@ -72,7 +63,7 @@ component{
 			return index( argumentCollection=arguments );
 		}
 		else {
-			prc.checkFiles 		= listToArray( rc.txaCheckFiles, "#chr(10)#, #chr(13)#" );
+			prc.checkFiles 		= listToArray( rc.txaCheckFiles, chr(13) & chr(10) );
 			prc.checkedFiles 	= [];
 			prc.failedFiles 	= [];
 			prc.results 		= [];
@@ -96,35 +87,5 @@ component{
 			event.setView( "main/results" );
 		}
 	}	
-
-	/************************************** IMPLICIT ACTIONS *********************************************/
-
-	function onAppInit(event,rc,prc){
-
-	}
-
-	function onRequestStart(event,rc,prc){
-
-	}
-
-	function onRequestEnd(event,rc,prc){
-
-	}
-
-	function onSessionStart(event,rc,prc){
-
-	}
-
-	function onSessionEnd(event,rc,prc){
-		var sessionScope = event.getValue("sessionReference");
-		var applicationScope = event.getValue("applicationReference");
-	}
-
-	function onException(event,rc,prc){
-		//Grab Exception From private request collection, placed by ColdBox Exception Handling
-		var exception = prc.exception;
-		//Place exception handler below:
-
-	}
 
 }

@@ -1,20 +1,17 @@
 {
-    "name":"CodeChecker",
+    "name":"CodeChecker App",
     "version":"2.0.1",
     "author":"Chris Weller <wellercs@gmail.com>",
-    "homepage":"https://github.com/wellercs/CodeChecker",
-    "documentation":"https://github.com/wellercs/CodeChecker/wiki",
+    "homepage":"https://github.com/Ortus-Solutions/CodeChecker",
+    "documentation":"https://github.com/Ortus-Solutions/CodeChecker/wiki",
     "createPackageDirectory":false,
     "repository":{
         "type":"git",
-        "url":"https://github.com/wellercs/CodeChecker"
+        "url":"https://github.com/Ortus-Solutions/CodeChecker"
     },
-    "bugs":"https://github.com/wellercs/CodeChecker/issues",
     "slug":"CodeChecker",
     "shortDescription":"A package for checking code quality.",
     "description":"This package uses rules to evaluate code on the local system and report back possible issues based on maintenance, performance, security, and standards.",
-    "instructions":"https://github.com/wellercs/CodeChecker/wiki",
-    "changelog":"https://github.com/wellercs/CodeChecker/releases",
     "type":"projects",
     "keywords":[
         "code",
@@ -31,17 +28,7 @@
         "standards"
     ],
     "private":false,
-    "engines":[
-        {
-            "type":"adobe",
-            "version":">=9.0.0"
-        },
-        {
-            "type":"lucee",
-            "version":">4.5"
-        }
-    ],
-    "projectURL":"https://github.com/wellercs/CodeChecker",
+    "projectURL":"https://github.com/Ortus-Solutions/CodeChecker",
     "license":[
         {
             "type":"Apache2",
@@ -51,13 +38,18 @@
     "contributors":[
         "Chris Weller <wellercs@gmail.com>",
         "Gavin Pickin <gpickin@gmail.com>",
-        "Luis Majano <lmajano@ortussolutions.com"
+        "Luis Majano <lmajano@ortussolutions.com",
+        "Brad Wood <brad@ortussolutions.com"
     ],
     "dependencies":{
-        "coldbox":"^4.3.0"
+        "coldbox":"^5.0.0",
+        "codechecker-core":"be"
     },
     "ignore":[
         "**/.*",
         "tests/**"
-    ]
+    ],
+    "installPaths":{
+        "coldbox":"coldbox/"
+    }
 }
