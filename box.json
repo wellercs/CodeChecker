@@ -50,6 +50,7 @@
         "tests/**"
     ],
     "installPaths":{
-        "coldbox":"coldbox/"
+        "coldbox":"coldbox/",
+        "codechecker-core":"modules/codechecker-core"
     }
 }
