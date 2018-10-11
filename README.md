@@ -7,7 +7,7 @@
                                                                     /_/   /_/     
 ```
 
-# CodeChecker
+# CodeChecker App
 
 Welcome to the CodeChecker.  A code quality tool.  This repo contains a standalone app you can run against your code.
 
