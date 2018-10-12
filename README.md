@@ -10,6 +10,7 @@
 # CodeChecker App
 
 Welcome to the CodeChecker.  A code quality tool.  This repo contains a standalone app you can run against your code.
+This app bundles the [CodeChecker core libraries](https://github.com/coldbox-modules/codechecker-core) for use in a web server.
 
 ## INSTRUCTIONS
 
