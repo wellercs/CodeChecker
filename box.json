@@ -1,6 +1,6 @@
 {
     "name":"CodeChecker App",
-    "version":"2.0.1",
+    "version":"2.0.2",
     "author":"Chris Weller <wellercs@gmail.com>",
     "homepage":"https://github.com/Ortus-Solutions/CodeChecker",
     "documentation":"https://github.com/Ortus-Solutions/CodeChecker/wiki",
@@ -52,5 +52,6 @@
     "installPaths":{
         "coldbox":"coldbox/",
         "codechecker-core":"modules/codechecker-core"
-    }
+    },
+    "location":"forgeboxStorage"
 }
