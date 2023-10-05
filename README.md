@@ -80,7 +80,7 @@ Initial metadata for rules include:
 * name - string value of the title of the rule
 * passonmatch - boolean value of whether to pass or fail if a match is found
 * pattern - string value of the regular expression of the rule
-* severity - value of the severity level of the broken rule (default values are 1-5)
+* severity - value of the severity level of the broken rule (default values are 1-5). 5 is most severe.
 * tagname - pipe delimited list of ColdFusion tags that directs the checker to run the rule only if the line contains one of the specified tags
 
 Third party plugins are supported for additional rules.
